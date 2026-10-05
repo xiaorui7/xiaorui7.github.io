@@ -117,14 +117,14 @@
         </article>
 
         <article class="project">
-          <h3><a href="https://github.com/xiaorui7/accelerated-fmcw-sar">Accelerated FMCW-SAR Imaging</a></h3>
-          <p>CPU-based numerical pipeline for simulating FMCW radar sweeps, applying FFT range processing, and reconstructing synthetic-aperture radar images.</p>
+          <h3><a href="https://github.com/xiaorui7/high-performance-telemetry-engine">High-Performance Telemetry Processing Engine</a></h3>
+          <p>High-performance processing engine for validating, aligning, and analyzing heterogeneous industrial-equipment telemetry with bounded memory and reproducible benchmarks.</p>
           <ul>
-            <li>Implemented scalar-reference, chunked NumPy, and parallel Numba back-projection paths with agreement and independent numerical checks.</li>
-            <li>Built validated YAML/NPZ interfaces, CLI workflows, controlled motion-error experiments, and isolated-process runtime and memory benchmarks.</li>
-            <li>Added unit and integration tests plus cross-platform GitHub Actions coverage for Python 3.11 and 3.13.</li>
+            <li>Built a CLI pipeline that ingests public UCI and deterministic synthetic cycles, validates malformed data, aligns multi-rate sensors, applies configurable diagnostic rules, and writes CSV/JSON artifacts.</li>
+            <li>Designed interchangeable reference Python, vectorized NumPy, and parallel Numba backends; four-thread Numba reached 21,789 cycles/second and 27.34× reference throughput with ≤4.62e-14 maximum absolute error.</li>
+            <li>Measured the complete file-to-output path at 391.5 cycles/second across 1,000 five-channel cycles; verified batch-memory trade-offs with 41 tests, 78% coverage, and Windows/Linux CI.</li>
           </ul>
-          <p class="code-tags"><code>Python</code> <code>NumPy</code> <code>SciPy</code> <code>Numba</code> <code>PyYAML</code> <code>pytest</code></p>
+          <p class="code-tags"><code>Python</code> <code>NumPy</code> <code>Numba</code> <code>PyYAML</code> <code>pytest</code> <code>GitHub Actions</code></p>
         </article>
       </section>
 
