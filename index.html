@@ -43,6 +43,7 @@
 
         <h3>Languages</h3>
         <p class="badges">
+          <img src="https://img.shields.io/badge/Go-00ADD8?style=flat&amp;logo=go&amp;logoColor=white" alt="Go" />
           <img src="https://img.shields.io/badge/Python-3776AB?style=flat&amp;logo=python&amp;logoColor=white" alt="Python" />
           <img src="https://img.shields.io/badge/C-A8B9CC?style=flat&amp;logo=c&amp;logoColor=111111" alt="C" />
           <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat&amp;logo=cplusplus&amp;logoColor=white" alt="C++" />
@@ -52,6 +53,7 @@
 
         <h3>Backend &amp; Web</h3>
         <p class="badges">
+          <img src="https://img.shields.io/badge/gRPC-244C5A?style=flat" alt="gRPC" />
           <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&amp;logo=fastapi&amp;logoColor=white" alt="FastAPI" />
           <img src="https://img.shields.io/badge/React-20232A?style=flat&amp;logo=react&amp;logoColor=61DAFB" alt="React" />
           <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&amp;logo=postgresql&amp;logoColor=white" alt="PostgreSQL" />
@@ -66,12 +68,13 @@
           <img src="https://img.shields.io/badge/NumPy-013243?style=flat&amp;logo=numpy&amp;logoColor=white" alt="NumPy" />
           <img src="https://img.shields.io/badge/pandas-150458?style=flat&amp;logo=pandas&amp;logoColor=white" alt="pandas" />
           <img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat&amp;logo=scikitlearn&amp;logoColor=white" alt="scikit-learn" />
-          <img src="https://img.shields.io/badge/SciPy-8CAAE6?style=flat&amp;logo=scipy&amp;logoColor=white" alt="SciPy" />
           <img src="https://img.shields.io/badge/Numba-00A3E0?style=flat&amp;logo=numba&amp;logoColor=white" alt="Numba" />
         </p>
 
         <h3>Systems &amp; Tools</h3>
         <p class="badges">
+          <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&amp;logo=kubernetes&amp;logoColor=white" alt="Kubernetes" />
+          <img src="https://img.shields.io/badge/MinIO-C72E49?style=flat" alt="MinIO" />
           <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&amp;logo=linux&amp;logoColor=111111" alt="Linux" />
           <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&amp;logo=docker&amp;logoColor=white" alt="Docker" />
           <img src="https://img.shields.io/badge/Git-F05032?style=flat&amp;logo=git&amp;logoColor=white" alt="Git" />
@@ -86,14 +89,25 @@
         <h2>Featured Projects</h2>
 
         <article class="project">
-          <h3><a href="https://github.com/xiaorui7/StepWise-Wearable-Sensor-Analytics-Platform">StepWise — Wearable Sensor Analytics Platform</a></h3>
-          <p>End-to-end platform that converts plantar-pressure and foot-mounted IMU recordings into structured gait-analysis results, charts, and non-diagnostic HTML reports.</p>
+          <h3><a href="https://github.com/xiaorui7/rae-feature-compression-benchmark">RAE — Feature Compression &amp; Sharded Retrieval</a></h3>
+          <p>Python feature-compression pipeline and Go retrieval service with replicated gRPC shards and an HTTP coordinator. Offline representations come from the official frozen RAE encoder.</p>
           <ul>
-            <li>Implemented a modular pipeline for parsing, calibration, contact detection, stance segmentation, feature extraction, data-quality checks, and explainable rules.</li>
-            <li>Built an asynchronous FastAPI backend with PostgreSQL-backed job state, Redis/RQ workers, persistent artifacts, a React dashboard, and an optional WeChat client.</li>
-            <li>Added defensive upload handling, deterministic fixtures, integration and end-to-end tests, and a reproducible Docker Compose environment.</li>
+            <li>Implemented exact cosine search across shards with deterministic global top-k merging and checksum-verified vector exports.</li>
+            <li>Added deadline propagation, bounded retries, explicit partial-result handling, health checks, Prometheus metrics, and replica routing on local Kubernetes.</li>
+            <li>Verified 72,000 query checks with zero ID mismatches; measured 1,026 QPS at 31 ms p99 on a local synthetic 50k × 64 FP32 workload with two shards and two replicas each.</li>
           </ul>
-          <p class="code-tags"><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Redis/RQ</code> <code>React</code> <code>TypeScript</code> <code>Docker</code> <code>pytest</code></p>
+          <p class="code-tags"><code>Go</code> <code>gRPC</code> <code>Python</code> <code>PyTorch</code> <code>Kubernetes</code> <code>Docker</code> <code>Prometheus</code></p>
+        </article>
+
+        <article class="project">
+          <h3><a href="https://github.com/xiaorui7/StepWise-Wearable-Sensor-Analytics-Platform">StepWise — Wearable Sensor Analytics Platform</a></h3>
+          <p>Asynchronous gait-analysis platform that processes wearable sensor recordings and delivers reports through a FastAPI backend and React dashboard.</p>
+          <ul>
+            <li>Implemented PostgreSQL-backed job state, Redis/RQ workers, idempotent submissions, bounded retries, and execution-token checks that prevent stale workers from publishing results.</li>
+            <li>Added S3-compatible MinIO storage with checksum-verified artifacts; deployed two API replicas and two workers on a local kind Kubernetes cluster without shared application filesystems.</li>
+            <li>Passed 106 tests with no skips against PostgreSQL, Redis/RQ, and MinIO; verified interrupted publication and cross-replica report consistency through integration and local cluster checks.</li>
+          </ul>
+          <p class="code-tags"><code>Python</code> <code>FastAPI</code> <code>PostgreSQL</code> <code>Redis/RQ</code> <code>React</code> <code>Kubernetes</code> <code>MinIO</code> <code>Docker</code> <code>pytest</code></p>
         </article>
 
         <article class="project">
@@ -104,18 +118,7 @@
             <li>Improved cache consistency and failure handling across dirty reads, partial transfers, victim replacement, write retries, and referenced-block flushing.</li>
             <li>Added 20 QEMU storage regression cases, per-cache instrumentation, and deterministic workloads spanning KTFS, the cache layer, I/O abstraction, and VirtIO.</li>
           </ul>
-          <p class="code-tags"><code>C</code> <code>RISC-V Assembly</code> <code>Linux</code> <code>QEMU</code> <code>VirtIO</code> <code>Python</code> <code>Make</code> <code>GitHub Actions</code></p>
-        </article>
-
-        <article class="project">
-          <h3><a href="https://github.com/xiaorui7/rae-feature-compression-benchmark">RAE Feature Compression Benchmark</a></h3>
-          <p>Config-driven toolkit for compressing high-dimensional vision representations and evaluating quality, storage, and exact-search trade-offs.</p>
-          <ul>
-            <li>Built a staged, resumable CLI that extracts pooled features from the official frozen RAE Stage-1 model, then evaluates FP16 storage, PCA, and trainable linear adapters.</li>
-            <li>Implemented exact block-wise cosine search, logistic-probe and reconstruction evaluation, validation-only selection, and held-out test auditing.</li>
-            <li>Added content-addressed runs, atomic artifacts, manifest validation, provenance hashes, deterministic sample handling, reports, tests, and CPU CI.</li>
-          </ul>
-          <p class="code-tags"><code>Python</code> <code>PyTorch</code> <code>NumPy</code> <code>scikit-learn</code> <code>matplotlib</code> <code>pytest</code></p>
+          <p class="code-tags"><code>C</code> <code>Linux</code> <code>QEMU</code> <code>VirtIO</code> <code>Python</code> <code>Make</code> <code>GitHub Actions</code></p>
         </article>
 
         <article class="project">
